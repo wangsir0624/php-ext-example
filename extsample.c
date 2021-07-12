@@ -44,6 +44,20 @@ PHP_FUNCTION(extsample_test2)
 }
 /* }}}*/
 
+PHP_MINIT_FUNCTION(extsample)
+{
+    php_printf("test minit");
+
+    return SUCCESS;
+}
+
+PHP_MSHUTDOWN_FUNCTION(extsample)
+{
+    php_printf("test mshutdown");
+
+    return SUCCESS;
+}
+
 /* {{{ PHP_RINIT_FUNCTION
  */
 PHP_RINIT_FUNCTION(extsample)
@@ -91,8 +105,8 @@ zend_module_entry extsample_module_entry = {
 	STANDARD_MODULE_HEADER,
 	"extsample",					/* Extension name */
 	extsample_functions,			/* zend_function_entry */
-	NULL,							/* PHP_MINIT - Module initialization */
-	NULL,							/* PHP_MSHUTDOWN - Module shutdown */
+	PHP_MINIT(extsample),							/* PHP_MINIT - Module initialization */
+	PHP_MSHUTDOWN(extsample),							/* PHP_MSHUTDOWN - Module shutdown */
 	PHP_RINIT(extsample),			/* PHP_RINIT - Request initialization */
 	NULL,							/* PHP_RSHUTDOWN - Request shutdown */
 	PHP_MINFO(extsample),			/* PHP_MINFO - Module info */
