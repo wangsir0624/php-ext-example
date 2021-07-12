@@ -1,7 +1,11 @@
 --TEST--
 extsample_test2() Basic test
---EXTENSIONS--
-extsample
+--SKIPIF--
+<?php
+if (!extension_loaded('extsample')) {
+	echo 'skip';
+}
+?>
 --FILE--
 <?php
 var_dump(extsample_test2());

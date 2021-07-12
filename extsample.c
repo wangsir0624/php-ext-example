@@ -7,7 +7,6 @@
 #include "php.h"
 #include "ext/standard/info.h"
 #include "php_extsample.h"
-#include "extsample_arginfo.h"
 
 /* For compatibility with older PHP versions */
 #ifndef ZEND_PARSE_PARAMETERS_NONE
@@ -16,8 +15,9 @@
 	ZEND_PARSE_PARAMETERS_END()
 #endif
 
-/* {{{ void test1() */
-PHP_FUNCTION(test1)
+/* {{{ void extsample_test1()
+ */
+PHP_FUNCTION(extsample_test1)
 {
 	ZEND_PARSE_PARAMETERS_NONE();
 
@@ -25,8 +25,9 @@ PHP_FUNCTION(test1)
 }
 /* }}} */
 
-/* {{{ string test2( [ string $var ] ) */
-PHP_FUNCTION(test2)
+/* {{{ string extsample_test2( [ string $var ] )
+ */
+PHP_FUNCTION(extsample_test2)
 {
 	char *var = "World";
 	size_t var_len = sizeof("World") - 1;
@@ -43,7 +44,8 @@ PHP_FUNCTION(test2)
 }
 /* }}}*/
 
-/* {{{ PHP_RINIT_FUNCTION */
+/* {{{ PHP_RINIT_FUNCTION
+ */
 PHP_RINIT_FUNCTION(extsample)
 {
 #if defined(ZTS) && defined(COMPILE_DL_EXTSAMPLE)
@@ -54,7 +56,8 @@ PHP_RINIT_FUNCTION(extsample)
 }
 /* }}} */
 
-/* {{{ PHP_MINFO_FUNCTION */
+/* {{{ PHP_MINFO_FUNCTION
+ */
 PHP_MINFO_FUNCTION(extsample)
 {
 	php_info_print_table_start();
@@ -63,11 +66,31 @@ PHP_MINFO_FUNCTION(extsample)
 }
 /* }}} */
 
-/* {{{ extsample_module_entry */
+/* {{{ arginfo
+ */
+ZEND_BEGIN_ARG_INFO(arginfo_extsample_test1, 0)
+ZEND_END_ARG_INFO()
+
+ZEND_BEGIN_ARG_INFO(arginfo_extsample_test2, 0)
+	ZEND_ARG_INFO(0, str)
+ZEND_END_ARG_INFO()
+/* }}} */
+
+/* {{{ extsample_functions[]
+ */
+static const zend_function_entry extsample_functions[] = {
+	PHP_FE(extsample_test1,		arginfo_extsample_test1)
+	PHP_FE(extsample_test2,		arginfo_extsample_test2)
+	PHP_FE_END
+};
+/* }}} */
+
+/* {{{ extsample_module_entry
+ */
 zend_module_entry extsample_module_entry = {
 	STANDARD_MODULE_HEADER,
 	"extsample",					/* Extension name */
-	ext_functions,					/* zend_function_entry */
+	extsample_functions,			/* zend_function_entry */
 	NULL,							/* PHP_MINIT - Module initialization */
 	NULL,							/* PHP_MSHUTDOWN - Module shutdown */
 	PHP_RINIT(extsample),			/* PHP_RINIT - Request initialization */

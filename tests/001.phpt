@@ -1,7 +1,11 @@
 --TEST--
 Check if extsample is loaded
---EXTENSIONS--
-extsample
+--SKIPIF--
+<?php
+if (!extension_loaded('extsample')) {
+	echo 'skip';
+}
+?>
 --FILE--
 <?php
 echo 'The extension "extsample" is available';
