@@ -38,7 +38,7 @@ PHP_FUNCTION(extsample_test2)
 		Z_PARAM_STRING(var, var_len)
 	ZEND_PARSE_PARAMETERS_END();
 
-	retval = strpprintf(0, "Hello %s", var);
+	retval = strpprintf(0, "Hello %s\r\n", var);
 
 	RETURN_STR(retval);
 }
@@ -46,14 +46,14 @@ PHP_FUNCTION(extsample_test2)
 
 PHP_MINIT_FUNCTION(extsample)
 {
-    php_printf("test minit");
+    php_printf("test minit\r\n");
 
     return SUCCESS;
 }
 
 PHP_MSHUTDOWN_FUNCTION(extsample)
 {
-    php_printf("test mshutdown");
+    php_printf("test mshutdown\r\n");
 
     return SUCCESS;
 }
