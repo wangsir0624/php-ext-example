@@ -52,7 +52,7 @@ PHP_FUNCTION(extsample_test2)
 
 PHP_MINIT_FUNCTION(extsample)
 {
-    REGISTER_INI_ENTRIES()
+    REGISTER_INI_ENTRIES();
     printf("test minit\r\n");
     EXTSAMPLE_G(test_global) = 555;
 
@@ -61,7 +61,7 @@ PHP_MINIT_FUNCTION(extsample)
 
 PHP_MSHUTDOWN_FUNCTION(extsample)
 {
-    UNREGISTER_INI_ENTRIES()
+    UNREGISTER_INI_ENTRIES();
     printf("test mshutdown\r\n");
 
     return SUCCESS;
@@ -93,7 +93,7 @@ PHP_MINFO_FUNCTION(extsample)
 	php_info_print_table_start();
 	php_info_print_table_header(2, "extsample support", "enabled");
 	php_info_print_table_end();
-    DISPLAY_INI_ENTRIES()
+    DISPLAY_INI_ENTRIES();
 }
 /* }}} */
 
