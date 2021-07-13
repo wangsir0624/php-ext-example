@@ -73,7 +73,7 @@ PHP_RINIT_FUNCTION(extsample)
 
 PHP_RSHUTDOWN_FUNCTION(extsample)
 {
-    printf("test rshutdown\r\n")
+    printf("test rshutdown\r\n");
 }
 
 /* {{{ PHP_MINFO_FUNCTION
