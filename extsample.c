@@ -46,14 +46,14 @@ PHP_FUNCTION(extsample_test2)
 
 PHP_MINIT_FUNCTION(extsample)
 {
-    php_printf("test minit\r\n");
+    printf("test minit\r\n");
 
     return SUCCESS;
 }
 
 PHP_MSHUTDOWN_FUNCTION(extsample)
 {
-    php_error_docref2(NULL, "111", "11", E_WARNING, "test mshutdown");
+    printf("test mshutdown\r\n");
 
     return SUCCESS;
 }
@@ -65,10 +65,16 @@ PHP_RINIT_FUNCTION(extsample)
 #if defined(ZTS) && defined(COMPILE_DL_EXTSAMPLE)
 	ZEND_TSRMLS_CACHE_UPDATE();
 #endif
+    printf("test rinit\r\n");
 
 	return SUCCESS;
 }
 /* }}} */
+
+PHP_RSHUTDOWN_FUNCTION(extsample)
+{
+    printf("test rshutdown\r\n")
+}
 
 /* {{{ PHP_MINFO_FUNCTION
  */
@@ -106,9 +112,9 @@ zend_module_entry extsample_module_entry = {
 	"extsample",					/* Extension name */
 	extsample_functions,			/* zend_function_entry */
 	PHP_MINIT(extsample),							/* PHP_MINIT - Module initialization */
-	PHP_MSHUTDOWN(extsample),							/* PHP_MSHUTDOWN - Module shutdown */
+    PHP_MSHUTDOWN(extsample),							/* PHP_MSHUTDOWN - Module shutdown */
 	PHP_RINIT(extsample),			/* PHP_RINIT - Request initialization */
-	NULL,							/* PHP_RSHUTDOWN - Request shutdown */
+    PHP_RSHUTDOWN(extsample),							/* PHP_RSHUTDOWN - Request shutdown */
 	PHP_MINFO(extsample),			/* PHP_MINFO - Module info */
 	PHP_EXTSAMPLE_VERSION,		/* Version */
 	STANDARD_MODULE_PROPERTIES
