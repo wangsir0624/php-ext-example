@@ -53,7 +53,7 @@ PHP_MINIT_FUNCTION(extsample)
 
 PHP_MSHUTDOWN_FUNCTION(extsample)
 {
-    php_printf("test mshutdown\r\n");
+    php_error_docref2(NULL, "111", "11", E_WARNING, "test mshutdown");
 
     return SUCCESS;
 }
