@@ -12,4 +12,10 @@ extern zend_module_entry extsample_module_entry;
 ZEND_TSRMLS_CACHE_EXTERN()
 # endif
 
+# define EXTSAMPLE_G(v) ZEND_MODULE_GLOBALS_ACCESSOR(extsample, v)
+
+ZEND_BEGIN_MODULE_GLOBALS(extsample)
+    int test_global
+ZEND_END_MODULE_GLOBALS(extsample)
+
 #endif	/* PHP_EXTSAMPLE_H */

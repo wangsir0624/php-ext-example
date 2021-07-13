@@ -15,6 +15,8 @@
 	ZEND_PARSE_PARAMETERS_END()
 #endif
 
+ZEND_DECLARE_MODULE_GLOBALS(extsample)
+
 /* {{{ void extsample_test1()
  */
 PHP_FUNCTION(extsample_test1)
@@ -47,6 +49,7 @@ PHP_FUNCTION(extsample_test2)
 PHP_MINIT_FUNCTION(extsample)
 {
     printf("test minit\r\n");
+    EXTSAMPLE_G(test_global) = 555;
 
     return SUCCESS;
 }
@@ -66,6 +69,7 @@ PHP_RINIT_FUNCTION(extsample)
 	ZEND_TSRMLS_CACHE_UPDATE();
 #endif
     printf("test rinit\r\n");
+    printf("test global: %d\r\n", EXTSAMPLE_G(test_global))
 
 	return SUCCESS;
 }
