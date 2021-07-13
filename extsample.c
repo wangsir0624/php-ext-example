@@ -69,7 +69,7 @@ PHP_RINIT_FUNCTION(extsample)
 	ZEND_TSRMLS_CACHE_UPDATE();
 #endif
     printf("test rinit\r\n");
-    printf("test global: %d\r\n", EXTSAMPLE_G(test_global))
+    printf("test global: %d\r\n", EXTSAMPLE_G(test_global));
 
 	return SUCCESS;
 }
