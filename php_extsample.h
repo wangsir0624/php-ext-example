@@ -15,7 +15,7 @@ ZEND_TSRMLS_CACHE_EXTERN()
 # define EXTSAMPLE_G(v) ZEND_MODULE_GLOBALS_ACCESSOR(extsample, v)
 
 ZEND_BEGIN_MODULE_GLOBALS(extsample)
-    int test_global
+    int test_global;
 ZEND_END_MODULE_GLOBALS(extsample)
 
 #endif	/* PHP_EXTSAMPLE_H */
